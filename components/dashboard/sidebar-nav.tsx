@@ -7,9 +7,12 @@ import {
   ChevronDown,
   Home,
   Hammer,
-  Settings,
+  ScrollText,
+  FileText,
   Users,
+  Settings,
   CreditCard,
+  Layers,
 } from "lucide-react";
 import {
   Collapsible,
@@ -26,14 +29,12 @@ type NavItem = {
 
 const sections: { title: string; items: NavItem[] }[] = [
   {
-    title: "Platform",
+    title: "Core",
     items: [
       { label: "Overview", href: "/dashboard", icon: Home },
-      {
-        label: "Feature",
-        href: "/dashboard/feature",
-        icon: Hammer,
-      },
+      { label: "Contracts", href: "/dashboard/contracts", icon: ScrollText },
+      { label: "Templates", href: "/dashboard/templates", icon: FileText },
+      { label: "Parties", href: "/dashboard/parties", icon: Layers },
     ],
   },
   {

@@ -46,9 +46,9 @@ export default async function DashboardLayout({
           <div className="p-5">
             <div className="flex items-center gap-2.5">
               <div className="grid size-8 place-items-center rounded-lg bg-foreground text-background text-sm font-bold shadow-sm">
-                P
+                D
               </div>
-              <span className="font-semibold tracking-tight">Panda Admin</span>
+              <span className="font-semibold tracking-tight">DocuBuild Admin</span>
             </div>
           </div>
 

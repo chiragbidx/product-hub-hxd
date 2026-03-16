@@ -66,7 +66,7 @@ const aiContractGenSchema = z.object({
   name: z.string().trim().min(1).max(80),
   templateId: z.string().optional().or(z.literal("")),
   parties: z.string().optional().or(z.literal("")),
-  description: z.string().min(1, "Describe the contract purpose or scenario for best results.").max(300),
+  content: z.string().max(4000).optional(), // content is now optional; can be blank or seed text
 });
 
 // Actions
@@ -191,7 +191,7 @@ export async function generateContractWithAIAction(formData: FormData) {
     name: formData.get("name"),
     templateId: formData.get("templateId") || null,
     parties: formData.get("parties") || null,
-    description: formData.get("description"),
+    content: formData.get("content"),
   });
 
   if (!parsed.success) {
@@ -223,11 +223,11 @@ export async function generateContractWithAIAction(formData: FormData) {
     "Always label major sections, and include all info provided about parties, effective date, and business purpose.",
   ].join(" ");
 
-  let prompt = `Please draft a legal contract named "${parsed.data.name}"`;
-  if (parsed.data.description) {
-    prompt += ` for the purpose of: ${parsed.data.description}.`;
+  let prompt = `Please draft a legal contract named "${parsed.data.name}".`;
+  if (parsed.data.content && parsed.data.content.trim().length > 0) {
+    prompt += ` Here is information about the contract, its purpose, or specific terms: ${parsed.data.content}`;
   }
-  if (parsed.data.parties) {
+  if (parsed.data.parties && parsed.data.parties.trim().length > 0) {
     prompt += ` Involve these parties: ${parsed.data.parties}.`;
   }
   if (templateContent) {
@@ -248,7 +248,7 @@ export async function generateContractWithAIAction(formData: FormData) {
 
     const content = chat.choices?.[0]?.message?.content?.trim() ?? "";
     if (content.length === 0) {
-      return { status: "error", message: "AI was unable to generate a contract. Try a more detailed description.", content: "" };
+      return { status: "error", message: "AI was unable to generate a contract. Try a more detailed description, content, or template.", content: "" };
     }
     return { status: "success", message: "AI contract generated!", content };
   } catch (error: any) {

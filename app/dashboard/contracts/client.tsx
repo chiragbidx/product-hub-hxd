@@ -434,7 +434,7 @@ function ContractFormWithAI({
                 size="sm"
                 type="button"
                 onClick={onAIButtonClick}
-                disabled={aiStatus === "loading" || !aiGenForm.description.trim()}
+                disabled={aiStatus === "loading"}
               >
                 <Sparkles className="mr-1 size-4" />
                 {aiStatus === "loading" ? "Generating..." : "Generate with AI"}

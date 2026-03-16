@@ -23,7 +23,12 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
 import { Trash2 } from "lucide-react";
-// Import server actions here when ready to wire forms
+// Import server actions here for forms
+import {
+  createContractAction,
+  updateContractAction,
+  archiveContractAction,
+} from "./actions";
 
 type Contract = {
   id: string;
@@ -93,15 +98,7 @@ export default function ContractsClient({
                   Start a new contract (either from a blank or from a template).
                 </DialogDescription>
               </DialogHeader>
-              {/* TODO: Wire up createContractAction and Form fields 
-                - Name
-                - Template (select, optional)
-                - Effective Date
-                - Assign parties (multi-select or comma, initially text for simplicity)
-                - Status (dropdown: draft/pending/signed/archived)
-                - Main contract content/textarea (for custom or final after template merge)
-              */}
-              <form className="space-y-3">
+              <form className="space-y-3" action={createContractAction}>
                 <div>
                   <label className="text-sm font-medium">Contract Name</label>
                   <Input name="name" required maxLength={80} />
@@ -220,8 +217,7 @@ export default function ContractsClient({
                                 Edit contract information and content.
                               </DialogDescription>
                             </DialogHeader>
-                            <form className="space-y-3">
-                              {/* TODO: Wire updateContractAction with correct fields */}
+                            <form className="space-y-3" action={updateContractAction}>
                               <input type="hidden" name="id" value={contract.id} />
                               <div>
                                 <label className="text-sm font-medium">Contract Name</label>
@@ -256,8 +252,7 @@ export default function ContractsClient({
                           </DialogContent>
                         </Dialog>
 
-                        <form>
-                          {/* TODO: Wire delete/archive contract action */}
+                        <form action={archiveContractAction}>
                           <input type="hidden" name="id" value={contract.id} />
                           <Button
                             type="submit"

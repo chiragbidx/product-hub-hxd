@@ -23,6 +23,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Trash2 } from "lucide-react";
 
+// Import actions for CRUD
+import {
+  createPartyAction,
+  updatePartyAction,
+  archivePartyAction,
+} from "./actions";
+
 type Party = {
   id: string;
   name: string;
@@ -77,7 +84,7 @@ export default function PartiesClient({
                   Enter party or contact information for use in new contracts.
                 </DialogDescription>
               </DialogHeader>
-              <form className="space-y-3">
+              <form className="space-y-3" action={createPartyAction}>
                 <div>
                   <label className="text-sm font-medium">Name</label>
                   <Input name="name" required maxLength={80} />
@@ -173,7 +180,7 @@ export default function PartiesClient({
                                 Update party information.
                               </DialogDescription>
                             </DialogHeader>
-                            <form className="space-y-3">
+                            <form className="space-y-3" action={updatePartyAction}>
                               <input type="hidden" name="id" value={p.id} />
                               <div>
                                 <label className="text-sm font-medium">Name</label>
@@ -202,8 +209,7 @@ export default function PartiesClient({
                             </form>
                           </DialogContent>
                         </Dialog>
-                        <form>
-                          {/* TODO: Wire soft delete/archive party */}
+                        <form action={archivePartyAction}>
                           <input type="hidden" name="id" value={p.id} />
                           <Button
                             type="submit"

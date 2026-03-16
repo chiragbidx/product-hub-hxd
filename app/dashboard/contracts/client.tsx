@@ -119,7 +119,7 @@ export default function ContractsClient({
       name: (form.elements.namedItem("name") as HTMLInputElement)?.value ?? "",
       templateId: (form.elements.namedItem("templateId") as HTMLSelectElement)?.value ?? "",
       parties: (form.elements.namedItem("parties") as HTMLInputElement)?.value ?? "",
-      description: "", // must retype/prompt for AI
+      description: aiGenForm.description, // preserve current value, do not reset on sync
     });
   }
 
@@ -427,6 +427,7 @@ function ContractFormWithAI({
                   value={aiGenForm.description}
                   onChange={handleAIInputChange}
                   required
+                  disabled={false}
                 />
               </div>
               <Button

@@ -85,15 +85,15 @@ export default function Client({ redirectTo }: ClientProps) {
     if (mode === "signup") {
       return {
         id: "signup",
-        title: "Create account",
-        description: "Start your free account in less than a minute.",
+        title: "Sign up for DocuBuild",
+        description: "Create your secure account and start generating contracts in minutes.",
       };
     }
 
     return {
       id: "signin",
-      title: "Sign in",
-      description: "Use your email and password to continue.",
+      title: "Sign in to DocuBuild",
+      description: "Access your contract dashboard securely.",
     };
   }, [mode]);
 
@@ -105,21 +105,20 @@ export default function Client({ redirectTo }: ClientProps) {
           <div className="relative z-10 flex h-full flex-col justify-between">
             <div className="space-y-4">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/80">
-                Panda Access
+                DocuBuild Access
               </p>
               <h1 className="max-w-sm text-4xl font-semibold leading-tight tracking-tight">
-                Launch faster with one workspace for your team.
+                Handle every contract securely—with one dashboard for your team.
               </h1>
               <p className="max-w-md text-sm text-muted-foreground">
-                Secure auth, polished interface, and a clean onboarding flow built
-                for production teams.
+                Industry-leading security, clear onboarding, and contract-focused workflows. Your peace of mind is our mission.
               </p>
             </div>
 
             <div className="relative overflow-hidden rounded-2xl border border-secondary/70 bg-background/80 p-3 shadow-lg">
               <Image
                 src="/demo-img.jpg"
-                alt="Panda product preview"
+                alt="DocuBuild product preview"
                 className="h-full w-full rounded-xl object-cover"
                 width={1200}
                 height={900}

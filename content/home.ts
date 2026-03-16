@@ -165,22 +165,22 @@ export const defaultHomeContent: HomeContent = {
   // ── Hero ─────────────────────────────────────────────────────────────────
   hero: {
     badgeInner: "Launch",
-    badgeOuter: "Panda SaaS starter is ready",
-    titleBefore: "Build your next",
-    titleHighlight: "SaaS",
-    titleAfter: "app in days, not weeks",
+    badgeOuter: "DocuBuild is live",
+    titleBefore: "Generate legal",
+    titleHighlight: "contracts",
+    titleAfter: "in minutes",
     subtitle:
-      "Panda gives you authentication, billing-ready patterns, team flows, and polished UI foundations so you can ship faster with confidence.",
-    primaryCta: { label: "Start Building", href: "#pricing" },
-    secondaryCta: { label: "Explore features", href: "#features" },
+      "DocuBuild empowers your business with fast, reliable, and secure contract workflows—draft, customize, and manage all your agreements in one place.",
+    primaryCta: { label: "Get Started", href: "#pricing" },
+    secondaryCta: { label: "See How It Works", href: "#features" },
     heroImageLight: "/hero-image-light.jpeg",
     heroImageDark: "/hero-image-dark.jpeg",
-    heroImageAlt: "Panda dashboard preview",
+    heroImageAlt: "DocuBuild contract dashboard preview",
   },
 
   // ── Sponsors ─────────────────────────────────────────────────────────────
   sponsors: {
-    heading: "Built with trusted tools",
+    heading: "Trusted by teams for legal peace of mind",
     items: [
       { icon: "Crown", name: "Vercel" },
       { icon: "Vegan", name: "Stripe" },
@@ -194,162 +194,167 @@ export const defaultHomeContent: HomeContent = {
 
   // ── Benefits ─────────────────────────────────────────────────────────────
   benefits: {
-    eyebrow: "Why Panda",
-    heading: "A practical SaaS app builder starter",
+    eyebrow: "Why DocuBuild",
+    heading: "Modern contract workflows, no legal headaches",
     description:
-      "Built for teams that want production-ready foundations with room to customize, not a rigid template you outgrow in a week.",
+      "DocuBuild is built for teams and professionals seeking a compliant, modern, and streamlined contract management solution—save time, stay secure, and keep every important agreement organized.",
     items: [
       {
         icon: "Blocks",
-        title: "Ship With Confidence",
-        description: "Start from proven architecture and avoid redoing auth, layout, and deployment setup.",
+        title: "Compliant & Secure",
+        description: "Your data is protected and contracts are tenant-scoped, with robust access controls.",
       },
       {
         icon: "LineChart",
-        title: "Faster Time To Revenue",
-        description: "Focus on product validation while the starter handles the repetitive engineering basics.",
+        title: "Generate, Edit, Manage",
+        description: "Draft from templates, customize with dynamic fields, then manage lifecycle from draft to signature.",
       },
       {
         icon: "Wallet",
-        title: "Lower Build Cost",
-        description: "Reusable components and patterns reduce rework and keep your team moving efficiently.",
+        title: "Easy Collaboration",
+        description: "Assign contract parties, invite team reviews, and track every action in the activity log.",
       },
       {
         icon: "Sparkle",
-        title: "Cleaner UX By Default",
-        description: "Responsive sections, dark mode, and polished UI primitives create a premium first impression.",
+        title: "All Your Docs, One Dashboard",
+        description: "Every contract, template, and contact accessible instantly—never lose track of an agreement again.",
       },
     ],
   },
 
   // ── Features ─────────────────────────────────────────────────────────────
   features: {
-    eyebrow: "Features",
-    heading: "What you get out of the box",
+    eyebrow: "Product Features",
+    heading: "A better way to build, store, and manage contracts",
     subtitle:
-      "Panda combines developer speed and production-grade UX so you can spend your time shipping features instead of rebuilding starter infrastructure.",
+      "DocuBuild gives you everything you need for contract creation, template management, party tracking, and secure team workflows.",
     items: [
-      { icon: "TabletSmartphone", title: "Responsive By Default", description: "Every section is optimized for mobile and desktop without extra layout work." },
-      { icon: "BadgeCheck", title: "Battle-Tested Patterns", description: "Uses dependable UI and architecture conventions teams can maintain long-term." },
-      { icon: "Goal", title: "Product-Focused Structure", description: "Clear section hierarchy designed to communicate value and drive activation." },
-      { icon: "PictureInPicture", title: "Polished Visual Foundation", description: "Modern cards, spacing, and motion cues that are easy to extend for your brand." },
-      { icon: "MousePointerClick", title: "Conversion-Ready CTA Flow", description: "Strategic calls-to-action and section order help users move to signup quickly." },
-      { icon: "Newspaper", title: "Documentation-Friendly", description: "Readable code and section boundaries make onboarding new contributors easier." },
+      {
+        icon: "TabletSmartphone",
+        title: "Responsive Anywhere",
+        description: "Manage contracts from any device—desktop, tablet, or mobile—with a modern, accessible UI.",
+      },
+      {
+        icon: "BadgeCheck",
+        title: "Reusable Templates",
+        description: "Save time with dynamic contract templates and fast population of client and project info.",
+      },
+      {
+        icon: "Goal",
+        title: "Status & Activity Log",
+        description: "Track the complete lifecycle—drafts, review, signed status, and detailed audit actions per contract.",
+      },
+      {
+        icon: "PictureInPicture",
+        title: "Party/Contact Management",
+        description: "Store reusable parties, assign roles, and link contacts to every contract without retyping.",
+      },
+      {
+        icon: "MousePointerClick",
+        title: "Role-Based Permissions",
+        description: "Admins, editors, and viewers each see the right actions and data—including contract add/edit/archive gating.",
+      },
+      {
+        icon: "ShieldCheck",
+        title: "Multi-Tenant Security",
+        description: "Strict tenant boundaries—each team's contracts, templates, and contacts are siloed and protected.",
+      },
     ],
   },
 
   // ── Services ─────────────────────────────────────────────────────────────
   services: {
-    eyebrow: "Services",
-    heading: "Core starter capabilities",
+    eyebrow: "Contract Generation",
+    heading: "End-to-end legal document workflows",
     subtitle:
-      "A pragmatic baseline for SaaS products that need to move quickly without sacrificing quality.",
+      "Everything you need to move from draft to done—fast creation, error-resistant editing, status tracking, and historical visibility.",
     items: [
-      { title: "Authentication Foundation", description: "Ready-to-extend auth scaffolding for email, OAuth, and organization-based access.", pro: false },
-      { title: "Billing-Ready Structure", description: "Plan models and upgrade flow patterns prepared for Stripe or your payment provider.", pro: false },
-      { title: "Developer Experience", description: "TypeScript, linting, and component primitives configured for team velocity.", pro: false },
-      { title: "Production Hardening", description: "Security-minded defaults, reusable UI states, and maintainable section architecture.", pro: true },
+      {
+        title: "Templated Contracts",
+        description: "Build reusable templates and fill dynamic fields in seconds.",
+        pro: false,
+      },
+      {
+        title: "Party Management",
+        description: "Organize contacts and assign them to key agreements.",
+        pro: false,
+      },
+      {
+        title: "Lifecycle Status",
+        description: "Track every stage—draft, pending, signed, archived—with clear labels and filtering.",
+        pro: false,
+      },
+      {
+        title: "Read-Only & Role Gating",
+        description: "Permission every action—admins edit, viewers browse, no accidental overwrites.",
+        pro: true,
+      },
     ],
   },
 
   // ── Testimonials ─────────────────────────────────────────────────────────
   testimonials: {
     eyebrow: "Testimonials",
-    heading: "Teams shipping with Panda",
+    heading: "How DocuBuild changes the legal workflow",
     reviews: [
-      { image: "/demo-img.jpg", name: "Aarav Shah", role: "Founder, FinchFlow", comment: "Panda saved us weeks of setup. We launched our first paying plan in less than a sprint.", rating: 5.0 },
-      { image: "/demo-img.jpg", name: "Maya Patel", role: "Product Lead, OrbitDesk", comment: "The section structure and component quality made it easy to ship a polished onboarding flow quickly.", rating: 4.8 },
-      { image: "/demo-img.jpg", name: "Nikhil Rao", role: "CTO, TeamForge", comment: "We replaced our old starter with Panda and reduced front-end rework dramatically.", rating: 4.9 },
-      { image: "/demo-img.jpg", name: "Emma Brooks", role: "Head of Growth, Nimbus", comment: "The default layout is conversion-friendly and easy to adapt to our brand.", rating: 5.0 },
-      { image: "/demo-img.jpg", name: "Daniel Kim", role: "Engineering Manager, PulseOps", comment: "Great developer ergonomics. New engineers onboarded fast and started shipping immediately.", rating: 5.0 },
-      { image: "/demo-img.jpg", name: "Sofia Green", role: "Founder, LaunchPad AI", comment: "Exactly what we needed for an MVP: clean code, strong UI, and a sensible section flow.", rating: 4.9 },
+      {
+        image: "/demo-img.jpg",
+        name: "Aarav Shah",
+        role: "Founder, FinchFlow",
+        comment: "We generate professional contracts in minutes with DocuBuild—no need for endless Word edits or email rounds.",
+        rating: 5.0,
+      },
+      {
+        image: "/demo-img.jpg",
+        name: "Maya Patel",
+        role: "Startup COO",
+        comment: "The templating system is a game changer for our sales and hiring agreements. Massive timesaver!",
+        rating: 4.9,
+      },
+      {
+        image: "/demo-img.jpg",
+        name: "Daniel Kim",
+        role: "Legal Counsel, Nimbus",
+        comment: "Clear contract status and party management features allow me to track every deal accurately.",
+        rating: 5.0,
+      },
+      {
+        image: "/demo-img.jpg",
+        name: "Sofia Green",
+        role: "SMB Owner",
+        comment: "DocuBuild makes it easy to keep my contract records sorted and secure. Onboarding was a breeze.",
+        rating: 5.0,
+      },
+      {
+        image: "/demo-img.jpg",
+        name: "Emma Brooks",
+        role: "Recruitment Manager",
+        comment: "All our hiring templates now live in DocuBuild, ready to customize for every candidate. Love the status tracking and activity log.",
+        rating: 4.9,
+      },
+      {
+        image: "/demo-img.jpg",
+        name: "Nikhil Rao",
+        role: "CTO, TeamForge",
+        comment: "The best SaaS decision we made for legal ops. Fast, organized, and everyone sees only the data they need.",
+        rating: 5.0,
+      },
     ],
   },
 
   // ── Team ─────────────────────────────────────────────────────────────────
   team: {
-    eyebrow: "Team",
-    heading: "Meet the Panda team",
+    eyebrow: "Our Team",
+    heading: "Meet the DocuBuild team",
     members: [
       {
         imageUrl: "/team1.jpg",
-        firstName: "Leo",
-        lastName: "Miranda",
-        positions: ["Lead Engineer", "Starter Architecture"],
+        firstName: "Chirag",
+        lastName: "Dodiya",
+        positions: ["Founder", "Product & Engineering"],
         socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-          { name: "Github", url: "https://github.com/leoMirandaa" },
-          { name: "X", url: "https://x.com/leo_mirand4" },
-        ],
-      },
-      {
-        imageUrl: "/team2.jpg",
-        firstName: "Elizabeth",
-        lastName: "Moore",
-        positions: ["Product Designer"],
-        socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-          { name: "X", url: "https://x.com/leo_mirand4" },
-        ],
-      },
-      {
-        imageUrl: "/team3.jpg",
-        firstName: "David",
-        lastName: "Diaz",
-        positions: ["Platform Engineer", "AI Integrations"],
-        socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-          { name: "Github", url: "https://github.com/leoMirandaa" },
-        ],
-      },
-      {
-        imageUrl: "/team1.jpg",
-        firstName: "Sarah",
-        lastName: "Robinson",
-        positions: ["Cloud Engineer", "Kubernetes"],
-        socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-          { name: "Github", url: "https://github.com/leoMirandaa" },
-          { name: "X", url: "https://x.com/leo_mirand4" },
-        ],
-      },
-      {
-        imageUrl: "/team2.jpg",
-        firstName: "Michael",
-        lastName: "Holland",
-        positions: ["DevOps Engineer", "CI/CD"],
-        socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-        ],
-      },
-      {
-        imageUrl: "/team3.jpg",
-        firstName: "Zoe",
-        lastName: "Garcia",
-        positions: ["Frontend Engineer", "Design Systems"],
-        socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-          { name: "Github", url: "https://github.com/leoMirandaa" },
-        ],
-      },
-      {
-        imageUrl: "/team1.jpg",
-        firstName: "Evan",
-        lastName: "James",
-        positions: ["Backend Engineer"],
-        socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-          { name: "Github", url: "https://github.com/leoMirandaa" },
-          { name: "X", url: "https://x.com/leo_mirand4" },
-        ],
-      },
-      {
-        imageUrl: "/team2.jpg",
-        firstName: "Pam",
-        lastName: "Taylor",
-        positions: ["Fullstack Engineer", "Product UX"],
-        socialNetworks: [
-          { name: "X", url: "https://x.com/leo_mirand4" },
+          { name: "LinkedIn", url: "https://linkedin.com/in/chiragdodiya" },
+          { name: "Github", url: "https://github.com/chiragdodiya" },
         ],
       },
     ],
@@ -358,33 +363,52 @@ export const defaultHomeContent: HomeContent = {
   // ── Pricing ──────────────────────────────────────────────────────────────
   pricing: {
     eyebrow: "Pricing",
-    heading: "Pricing for every stage",
-    subtitle: "Start lean, then scale to enterprise-grade workflows as your product grows.",
+    heading: "Fair pricing, clear value—no surprises",
+    subtitle:
+      "Choose the best plan for your contract workflow. Start for free, upgrade when you need tailored controls and audit logs.",
     priceSuffix: "/month",
     plans: [
       {
         title: "Starter",
         popular: false,
         price: 0,
-        description: "Ideal for prototypes and small internal tools.",
+        description: "Perfect for freelancers and very small teams. Unlimited contracts, up to 2 parties per contract.",
         buttonText: "Start for free",
-        benefits: ["Up to 3 teammates", "Basic auth patterns", "Core landing sections", "Community support", "Deploy-ready setup"],
+        benefits: [
+          "Unlimited contracts (up to 2 parties)",
+          "All template features",
+          "Activity log (last 30 days)",
+          "Role-based access",
+          "Email support",
+        ],
       },
       {
-        title: "Growth",
+        title: "Team",
         popular: true,
-        price: 49,
-        description: "Best for product teams shipping customer-facing SaaS.",
-        buttonText: "Start trial",
-        benefits: ["Unlimited teammates", "Advanced section set", "Billing-ready models", "Priority support", "Team workflows"],
+        price: 39,
+        description: "Best for growing teams, agencies, or legal departments.",
+        buttonText: "Start 14-day trial",
+        benefits: [
+          "Unlimited parties per contract",
+          "Priority email support",
+          "Activity log (full)",
+          "Multi-tenant team model",
+          "Bulk contract import/export",
+        ],
       },
       {
         title: "Enterprise",
         popular: false,
-        price: 199,
-        description: "For teams requiring compliance, support SLAs, and custom rollout.",
+        price: 129,
+        description: "Custom SLAs, onboarding, and integrations. For legal, HR, or ops at scale.",
         buttonText: "Contact sales",
-        benefits: ["Security review support", "SSO/SAML integration path", "Dedicated onboarding", "Phone and email support", "Architecture advisory"],
+        benefits: [
+          "Custom integrations",
+          "Dedicated onboarding",
+          "SSO/SAML option",
+          "Full audit logging",
+          "Security review",
+        ],
       },
     ],
   },
@@ -392,44 +416,50 @@ export const defaultHomeContent: HomeContent = {
   // ── Contact ──────────────────────────────────────────────────────────────
   contact: {
     eyebrow: "Contact",
-    heading: "Talk to the Panda team",
+    heading: "Talk to the DocuBuild team",
     description:
-      "Need help customizing the starter, planning architecture, or accelerating launch? Share your goals and timeline.",
-    mailtoAddress: "hello@panda.dev",
+      "Need help setting up contract workflows, importing legacy documents, or rolling out multi-tenant teams? Let us know how we can help.",
+    mailtoAddress: "hi@chirag.co",
     info: {
-      address: { label: "Find us", value: "Remote-first • San Francisco, CA" },
+      address: { label: "Find us", value: "Remote-first • Worldwide" },
       phone: { label: "Call us", value: "+1 (415) 555-0199" },
-      email: { label: "Email us", value: "hello@panda.dev" },
-      hours: { label: "Visit us", value: ["Monday - Friday", "9AM - 6PM PT"] },
+      email: { label: "Email us", value: "hi@chirag.co" },
+      hours: { label: "Support hours", value: ["Monday - Friday", "8AM - 8PM (global)"] },
     },
-    formSubjects: ["Starter Demo", "Architecture Review", "Design System", "Billing Integration", "Enterprise Plan"],
-    formSubmitLabel: "Send inquiry",
+    formSubjects: [
+      "Product Inquiry",
+      "Contract Import",
+      "Team Onboarding",
+      "Template Customization",
+      "Enterprise Plan",
+    ],
+    formSubmitLabel: "Send message",
   },
 
   // ── FAQ ──────────────────────────────────────────────────────────────────
   faq: {
     eyebrow: "FAQ",
-    heading: "Common Questions",
+    heading: "DocuBuild: Common Questions",
     items: [
-      { question: "Is Panda free to start with?", answer: "Yes. You can start with the core template and customize it for your product." },
-      { question: "Can I use this for a production SaaS app?", answer: "Yes. The starter is designed for production-minded teams with scalable structure and reusable UI patterns." },
-      { question: "Does it support dark mode and responsive design?", answer: "Yes. The template includes theme support and responsive layouts across major sections." },
-      { question: "Can I plug in my own auth and billing provider?", answer: "Yes. The structure is provider-agnostic and easy to adapt for your stack." },
-      { question: "How quickly can I launch with Panda?", answer: "Most teams can ship an MVP in days by reusing existing sections and starter patterns." },
+      { question: "Can I generate contracts without legal expertise?", answer: "Yes! DocuBuild’s templates and dynamic fields make it easy for any business or team to create, customize, and manage contracts." },
+      { question: "Is my data and contracts secure?", answer: "Absolutely. DocuBuild is multi-tenant, role-gated, with contract access scoped by team. All data stored securely in enterprise-grade infrastructure." },
+      { question: "Can I customize contract templates for my business?", answer: "Yes—edit templates, add dynamic fields, and use your own language for each agreement." },
+      { question: "How does party/contact management work?", answer: "Parties are reusable contacts—add once, assign roles, and link to contracts as needed. Edit or archive anytime." },
+      { question: "How is collaboration handled?", answer: "Admin and editor roles allow contract creation and approval; viewers can read only. All actions appear in the contract’s activity log." },
+      { question: "What if I need a custom contract feature?", answer: "Reach out to the DocuBuild team. We're committed to flexible workflows and will work with you to extend the platform for your needs." },
     ],
   },
 
   // ── Footer ───────────────────────────────────────────────────────────────
   footer: {
-    brandName: "Panda",
+    brandName: "DocuBuild",
     columns: [
       {
         heading: "Contact",
         links: [
-          { label: "hello@panda.dev", href: "mailto:hello@panda.dev" },
-          { label: "Github", href: "#" },
-          { label: "Twitter", href: "https://x.com" },
-          { label: "Discord", href: "https://discord.com" },
+          { label: "hi@chirag.co", href: "mailto:hi@chirag.co" },
+          { label: "Chirag Dodiya", href: "mailto:hi@chirag.co" },
+          { label: "Twitter", href: "https://x.com/chiragdodiya" },
         ],
       },
       {
@@ -443,44 +473,43 @@ export const defaultHomeContent: HomeContent = {
       {
         heading: "Help",
         links: [
-          { label: "Contact Us", href: "#contact" },
+          { label: "Contact Support", href: "#contact" },
           { label: "FAQ", href: "#faq" },
-          { label: "Docs", href: "https://nextjs.org/docs" },
         ],
       },
       {
-        heading: "Socials",
+        heading: "Company",
         links: [
-          { label: "GitHub", href: "https://github.com" },
-          { label: "Discord", href: "https://discord.com" },
-          { label: "X", href: "https://x.com" },
+          { label: "Terms of Service", href: "#" },
+          { label: "Privacy Policy", href: "#" },
         ],
       },
     ],
-    copyright: "\u00a9 2026 Panda SaaS App Builder Starter.",
+    copyright: "© 2026 DocuBuild. All rights reserved.",
     attribution: { label: "Built on Next.js", href: "https://nextjs.org" },
   },
 
   // ── Navbar ───────────────────────────────────────────────────────────────
   navbar: {
-    brandName: "Panda",
+    brandName: "DocuBuild",
     routes: [
+      { href: "/#features", label: "Features" },
       { href: "/#testimonials", label: "Testimonials" },
-      { href: "/#team", label: "Team" },
-      { href: "/#contact", label: "Contact" },
+      { href: "/#pricing", label: "Pricing" },
       { href: "/#faq", label: "FAQ" },
+      { href: "/#contact", label: "Contact" },
     ],
-    featureDropdownLabel: "Features",
-    featureImage: { src: "/demo-img.jpg", alt: "Panda preview" },
+    featureDropdownLabel: "Contract Solutions",
+    featureImage: { src: "/demo-img.jpg", alt: "DocuBuild feature preview" },
     features: [
-      { title: "Auth, Billing, Teams", description: "Production-ready flows for sign-in, subscriptions, and organizations." },
-      { title: "UI + Design System", description: "Shadcn-based components with consistent theming and dark mode support." },
-      { title: "Deploy Fast", description: "Sane defaults for Next.js, TypeScript, and Vercel-first deployment." },
+      { title: "Contract Builder", description: "Flexible, compliant, and fast contracts for business, HR, and legal." },
+      { title: "Template Management", description: "Dynamic field support and one-click contract generation." },
+      { title: "Audit Logs & Search", description: "All changes tracked, all contracts searchable, nothing lost." },
     ],
     signInLabel: "Sign in",
     signUpLabel: "Sign up",
     dashboardLabel: "Dashboard",
-    githubLink: { href: "https://nextjs.org/docs", ariaLabel: "View on GitHub" },
+    githubLink: { href: "https://github.com/chiragdodiya", ariaLabel: "View on GitHub" },
   },
 };
 

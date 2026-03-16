@@ -23,6 +23,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Trash2 } from "lucide-react";
 
+// Import actions for CRUD
+import {
+  createTemplateAction,
+  updateTemplateAction,
+  archiveTemplateAction,
+} from "./actions";
+
 type Template = {
   id: string;
   name: string;
@@ -44,7 +51,7 @@ function formatTimestamp(iso: string | null) {
   if (Number.isNaN(date.getTime())) return "Unknown";
   const yyyy = date.getUTCFullYear();
   const mm = String(date.getUTCMonth() + 1).padStart(2, "0");
-  const dd = String(date.getUTCDate()).padStart(2, "0");
+  const dd = String(date.getUTCDate() + 1).padStart(2, "0");
   return `${yyyy}-${mm}-${dd}`;
 }
 
@@ -75,7 +82,7 @@ export default function TemplatesClient({
                   Define your template content. Use <code>{"{{field_name}}"}</code> for dynamic fields.
                 </DialogDescription>
               </DialogHeader>
-              <form className="space-y-3">
+              <form className="space-y-3" action={createTemplateAction}>
                 <div>
                   <label className="text-sm font-medium">Template Name</label>
                   <Input name="name" required maxLength={80} />
@@ -162,7 +169,7 @@ export default function TemplatesClient({
                                 Update template name or content.
                               </DialogDescription>
                             </DialogHeader>
-                            <form className="space-y-3">
+                            <form className="space-y-3" action={updateTemplateAction}>
                               <input type="hidden" name="id" value={tpl.id} />
                               <div>
                                 <label className="text-sm font-medium">Template Name</label>
@@ -183,8 +190,7 @@ export default function TemplatesClient({
                             </form>
                           </DialogContent>
                         </Dialog>
-                        <form>
-                          {/* TODO: Wire soft delete/archive template */}
+                        <form action={archiveTemplateAction}>
                           <input type="hidden" name="id" value={tpl.id} />
                           <Button
                             type="submit"

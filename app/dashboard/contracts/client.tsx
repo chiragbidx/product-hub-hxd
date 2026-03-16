@@ -82,12 +82,11 @@ export default function ContractsClient({
   // AI Generation states
   const [aiStatus, setAIStatus] = useState<null | "loading" | "success" | "error">(null);
   const [aiMessage, setAIMessage] = useState<string | null>(null);
-  const [aiContent, setAIContent] = useState<string>("");
+  const [content, setContent] = useState<string>("");
   const [aiGenForm, setAIGenForm] = useState({
     name: "",
     templateId: "",
     parties: "",
-    description: "",
   });
 
   async function handleAIGenerateContractButton() {
@@ -98,16 +97,16 @@ export default function ContractsClient({
     data.set("name", aiGenForm.name);
     data.set("templateId", aiGenForm.templateId);
     data.set("parties", aiGenForm.parties);
-    data.set("description", aiGenForm.description);
+    data.set("content", content); // now using content as prompt
 
     const res = await generateContractWithAIAction(data);
 
     if (res.status === "success") {
-      setAIContent(res.content || "");
+      setContent(res.content || "");
       setAIStatus("success");
       setAIMessage(res.message);
     } else {
-      setAIContent("");
+      setContent("");
       setAIStatus("error");
       setAIMessage(res.message);
     }
@@ -119,8 +118,8 @@ export default function ContractsClient({
       name: (form.elements.namedItem("name") as HTMLInputElement)?.value ?? "",
       templateId: (form.elements.namedItem("templateId") as HTMLSelectElement)?.value ?? "",
       parties: (form.elements.namedItem("parties") as HTMLInputElement)?.value ?? "",
-      description: aiGenForm.description, // preserve current value, do not reset on sync
     });
+    setContent((form.elements.namedItem("content") as HTMLTextAreaElement)?.value ?? "");
   }
 
   return (
@@ -151,8 +150,8 @@ export default function ContractsClient({
               </DialogHeader>
               <ContractFormWithAI
                 templates={templates}
-                aiContent={aiContent}
-                setAIContent={setAIContent}
+                content={content}
+                setContent={setContent}
                 aiStatus={aiStatus}
                 aiMessage={aiMessage}
                 aiGenForm={aiGenForm}
@@ -296,8 +295,8 @@ export default function ContractsClient({
 // ContractFormWithAI, with AI fields as div and button (not a form)
 function ContractFormWithAI({
   templates,
-  aiContent,
-  setAIContent,
+  content,
+  setContent,
   aiStatus,
   aiMessage,
   aiGenForm,
@@ -307,12 +306,12 @@ function ContractFormWithAI({
   syncMainFormToAIFields,
 }: {
   templates: Template[];
-  aiContent: string;
-  setAIContent: (s: string) => void;
+  content: string;
+  setContent: (s: string) => void;
   aiStatus: null | "loading" | "success" | "error";
   aiMessage: string | null;
-  aiGenForm: { name: string; templateId: string; parties: string; description: string };
-  setAIGenForm: (s: { name: string; templateId: string; parties: string; description: string }) => void;
+  aiGenForm: { name: string; templateId: string; parties: string };
+  setAIGenForm: (s: { name: string; templateId: string; parties: string }) => void;
   onAIButtonClick: () => void;
   createContractAction: any;
   syncMainFormToAIFields: (form: HTMLFormElement) => void;
@@ -323,10 +322,6 @@ function ContractFormWithAI({
     if (contractFormRef.current) {
       syncMainFormToAIFields(contractFormRef.current);
     }
-  }
-
-  function handleAIInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    setAIGenForm({ ...aiGenForm, description: e.target.value });
   }
 
   return (
@@ -376,9 +371,9 @@ function ContractFormWithAI({
             name="content"
             rows={5}
             maxLength={4000}
-            value={aiContent}
-            onChange={(e) => setAIContent(e.target.value)}
-            placeholder="Paste your contract (or use AI to generate a draft below)"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="Paste your contract, describe it, or use AI to generate a draft below"
           />
           <details className="mt-3">
             <summary className="cursor-pointer text-sm font-semibold flex items-center gap-1">
@@ -416,18 +411,6 @@ function ContractFormWithAI({
                   value={aiGenForm.parties}
                   disabled
                   className="py-1 text-xs bg-muted"
-                />
-              </div>
-              <div>
-                <label className="text-xs font-medium">Describe what this contract needs to accomplish</label>
-                <Textarea
-                  name="ai_description"
-                  rows={2}
-                  maxLength={300}
-                  value={aiGenForm.description}
-                  onChange={handleAIInputChange}
-                  required
-                  disabled={false}
                 />
               </div>
               <Button

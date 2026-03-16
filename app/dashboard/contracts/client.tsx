@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -22,12 +23,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
-import { Trash2 } from "lucide-react";
-// Import server actions here for forms
+import { Trash2, Sparkles } from "lucide-react";
+
 import {
   createContractAction,
   updateContractAction,
   archiveContractAction,
+  generateContractWithAIAction,
 } from "./actions";
 
 type Contract = {
@@ -77,6 +79,33 @@ export default function ContractsClient({
   templates,
   parties,
 }: ClientProps) {
+  // AI Generation states
+  const [aiStatus, setAIStatus] = useState<null | "loading" | "success" | "error">(null);
+  const [aiMessage, setAIMessage] = useState<string | null>(null);
+  const [aiContent, setAIContent] = useState<string>("");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  async function handleAIGenerateContract(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setAIStatus("loading");
+    setAIMessage(null);
+
+    const form = e.target as HTMLFormElement;
+    const data = new FormData(form);
+    const res = await generateContractWithAIAction(data);
+
+    if (res.status === "success") {
+      setAIContent(res.content || "");
+      setAIStatus("success");
+      setAIMessage(res.message);
+      // Optionally auto-populate the content field in form UI, if input ref management is preferred.
+    } else {
+      setAIContent("");
+      setAIStatus("error");
+      setAIMessage(res.message);
+    }
+  }
+
   return (
     <section className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -95,10 +124,20 @@ export default function ContractsClient({
               <DialogHeader>
                 <DialogTitle>Add Contract</DialogTitle>
                 <DialogDescription>
-                  Start a new contract (either from a blank or from a template).
+                  Start a new contract (either from a blank, from a template, or draft with AI.
+                  <br />
+                  <span className="flex items-center text-xs gap-2 mt-2">
+                    <Sparkles size={14} className="text-primary" />
+                    AI draft generation is assistive only. Review and edit before submitting.
+                  </span>
                 </DialogDescription>
               </DialogHeader>
-              <form className="space-y-3" action={createContractAction}>
+              <form
+                className="space-y-3"
+                action={createContractAction}
+                ref={formRef}
+                // allow normal submit pattern, AI handled separately
+              >
                 <div>
                   <label className="text-sm font-medium">Contract Name</label>
                   <Input name="name" required maxLength={80} />
@@ -131,8 +170,57 @@ export default function ContractsClient({
                   <Input name="parties" placeholder="Comma-separated party names" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Content</label>
-                  <Textarea name="content" rows={5} maxLength={4000} />
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    Content{" "}
+                    <span className="text-xs text-muted-foreground">(You may generate with AI below!)</span>
+                  </label>
+                  <Textarea
+                    name="content"
+                    rows={5}
+                    maxLength={4000}
+                    value={aiContent}
+                    onChange={(e) => setAIContent(e.target.value)}
+                    placeholder="Paste your contract (or use AI to generate a draft below)"
+                  />
+                  {/* AI Generation Inputs */}
+                  <details className="mt-3">
+                    <summary className="cursor-pointer text-sm font-semibold flex items-center gap-1">
+                      <Sparkles size={14} className="text-primary" />
+                      Generate contract content with AI
+                    </summary>
+                    <div className="space-y-2 mt-3 bg-muted/60 p-3 rounded">
+                      <form className="space-y-2" onSubmit={handleAIGenerateContract}>
+                        <input type="hidden" name="name" value={formRef.current?.name?.value || ''} />
+                        <div>
+                          <label className="text-xs font-medium">Template for AI (optional)</label>
+                          <select name="templateId" className="w-full rounded border px-3 py-1 text-xs">
+                            <option value="">None</option>
+                            {templates.map((tpl) => (
+                              <option key={tpl.id} value={tpl.id}>{tpl.name}</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div>
+                          <label className="text-xs font-medium">Assign Parties (optional)</label>
+                          <Input name="parties" placeholder="Comma-separated names" className="py-1 text-xs" />
+                        </div>
+                        <div>
+                          <label className="text-xs font-medium">Describe what this contract needs to accomplish</label>
+                          <Textarea name="description" rows={2} maxLength={300} required />
+                        </div>
+                        <Button size="sm" type="submit" disabled={aiStatus === "loading"}>
+                          <Sparkles className="mr-1 size-4" />
+                          {aiStatus === "loading" ? "Generating..." : "Generate with AI"}
+                        </Button>
+                        {aiStatus === "error" && (
+                          <p className="text-xs text-destructive mt-1">{aiMessage}</p>
+                        )}
+                        {aiStatus === "success" && (
+                          <p className="text-xs text-emerald-700 mt-1">{aiMessage}</p>
+                        )}
+                      </form>
+                    </div>
+                  </details>
                 </div>
                 <DialogFooter>
                   <DialogClose asChild>

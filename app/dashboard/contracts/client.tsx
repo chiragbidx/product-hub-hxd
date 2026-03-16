@@ -90,8 +90,7 @@ export default function ContractsClient({
     description: "",
   });
 
-  async function handleAIGenerateContract(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  async function handleAIGenerateContractButton() {
     setAIStatus("loading");
     setAIMessage(null);
 
@@ -158,7 +157,7 @@ export default function ContractsClient({
                 aiMessage={aiMessage}
                 aiGenForm={aiGenForm}
                 setAIGenForm={setAIGenForm}
-                onAIFormSubmit={handleAIGenerateContract}
+                onAIButtonClick={handleAIGenerateContractButton}
                 createContractAction={createContractAction}
                 syncMainFormToAIFields={syncMainFormToAIFields}
               />
@@ -294,7 +293,7 @@ export default function ContractsClient({
   );
 }
 
-// Separated out so AI form is not nested inside main contract form
+// ContractFormWithAI, with AI fields as div and button (not a form)
 function ContractFormWithAI({
   templates,
   aiContent,
@@ -303,7 +302,7 @@ function ContractFormWithAI({
   aiMessage,
   aiGenForm,
   setAIGenForm,
-  onAIFormSubmit,
+  onAIButtonClick,
   createContractAction,
   syncMainFormToAIFields,
 }: {
@@ -314,17 +313,20 @@ function ContractFormWithAI({
   aiMessage: string | null;
   aiGenForm: { name: string; templateId: string; parties: string; description: string };
   setAIGenForm: (s: { name: string; templateId: string; parties: string; description: string }) => void;
-  onAIFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onAIButtonClick: () => void;
   createContractAction: any;
   syncMainFormToAIFields: (form: HTMLFormElement) => void;
 }) {
   const contractFormRef = useRef<HTMLFormElement>(null);
 
-  // When the contract form changes, update the AI form name and party fields to align
   function handleMainFormChange() {
     if (contractFormRef.current) {
       syncMainFormToAIFields(contractFormRef.current);
     }
+  }
+
+  function handleAIInputChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setAIGenForm({ ...aiGenForm, description: e.target.value });
   }
 
   return (
@@ -384,61 +386,64 @@ function ContractFormWithAI({
               Generate contract content with AI
             </summary>
             <div className="space-y-2 mt-3 bg-muted/60 p-3 rounded">
-              <form className="space-y-2" onSubmit={onAIFormSubmit} autoComplete="off">
-                <div>
-                  <label className="text-xs font-medium">Contract Name (copied from above)</label>
-                  <Input
-                    name="name"
-                    value={aiGenForm.name}
-                    disabled
-                    className="py-1 text-xs bg-muted"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-medium">Template for AI (optional, copied from above)</label>
-                  <select
-                    name="templateId"
-                    className="w-full rounded border px-3 py-1 text-xs"
-                    value={aiGenForm.templateId}
-                    disabled
-                  >
-                    <option value="">None</option>
-                    {templates.map((tpl) => (
-                      <option key={tpl.id} value={tpl.id}>{tpl.name}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="text-xs font-medium">Assign Parties (optional, copied from above)</label>
-                  <Input
-                    name="parties"
-                    value={aiGenForm.parties}
-                    disabled
-                    className="py-1 text-xs bg-muted"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-medium">Describe what this contract needs to accomplish</label>
-                  <Textarea
-                    name="description"
-                    rows={2}
-                    maxLength={300}
-                    value={aiGenForm.description}
-                    onChange={(e) => setAIGenForm({ ...aiGenForm, description: e.target.value })}
-                    required
-                  />
-                </div>
-                <Button size="sm" type="submit" disabled={aiStatus === "loading"}>
-                  <Sparkles className="mr-1 size-4" />
-                  {aiStatus === "loading" ? "Generating..." : "Generate with AI"}
-                </Button>
-                {aiStatus === "error" && (
-                  <p className="text-xs text-destructive mt-1">{aiMessage}</p>
-                )}
-                {aiStatus === "success" && (
-                  <p className="text-xs text-emerald-700 mt-1">{aiMessage}</p>
-                )}
-              </form>
+              <div>
+                <label className="text-xs font-medium">Contract Name (copied from above)</label>
+                <Input
+                  name="ai_name"
+                  value={aiGenForm.name}
+                  disabled
+                  className="py-1 text-xs bg-muted"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-medium">Template for AI (optional, copied from above)</label>
+                <select
+                  name="ai_templateId"
+                  className="w-full rounded border px-3 py-1 text-xs"
+                  value={aiGenForm.templateId}
+                  disabled
+                >
+                  <option value="">None</option>
+                  {templates.map((tpl) => (
+                    <option key={tpl.id} value={tpl.id}>{tpl.name}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="text-xs font-medium">Assign Parties (optional, copied from above)</label>
+                <Input
+                  name="ai_parties"
+                  value={aiGenForm.parties}
+                  disabled
+                  className="py-1 text-xs bg-muted"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-medium">Describe what this contract needs to accomplish</label>
+                <Textarea
+                  name="ai_description"
+                  rows={2}
+                  maxLength={300}
+                  value={aiGenForm.description}
+                  onChange={handleAIInputChange}
+                  required
+                />
+              </div>
+              <Button
+                size="sm"
+                type="button"
+                onClick={onAIButtonClick}
+                disabled={aiStatus === "loading" || !aiGenForm.description.trim()}
+              >
+                <Sparkles className="mr-1 size-4" />
+                {aiStatus === "loading" ? "Generating..." : "Generate with AI"}
+              </Button>
+              {aiStatus === "error" && (
+                <p className="text-xs text-destructive mt-1">{aiMessage}</p>
+              )}
+              {aiStatus === "success" && (
+                <p className="text-xs text-emerald-700 mt-1">{aiMessage}</p>
+              )}
             </div>
           </details>
         </div>
